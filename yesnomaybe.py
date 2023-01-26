@@ -21,7 +21,7 @@ def main():
     while True:  # Game loop
         # Store the secret number:
         secretNum = getSecretNum()
-        print("\nI with think of a number.....")
+        print("\nI will think of a number.....")
         print("\nHmmmmmmm..... Let me see...")
         print("\nI thought up a number! This should be good!")
         print("\nYou have {} chances to guess my number.".format(MAX_GUESSES))
