@@ -25,3 +25,23 @@ def main():
         print("\nHmmmmmmm..... Let me see...")
         print("\nI thought up a number! This should be good!")
         print("\nYou have {} chances to guess my number.".format(MAX_GUESSES))
+
+        numGuesses = 1
+        while numGuesses <= MAX_GUESSES:
+          guess = ''
+          # loop until they make valid guess:
+          while len(guess) != NUM_DIGITS or not guess.isdecimal():
+            print('Guess #{}: '.format(numGuesses))
+            guess = input('> ')
+
+          clues = getClues(guess, secretNum)
+          print(clues)
+          numGuesses += 1
+
+          if guess == secretNum:
+            break  # break the loop when guessed correctly.
+          if numGuesses > MAX_GUESSES:
+            print('Sorry, you ran out of guesses.')
+            print('My number is {}.'.format(secretNum))
+
+        
