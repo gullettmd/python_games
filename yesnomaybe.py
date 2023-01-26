@@ -44,4 +44,50 @@ def main():
             print('Sorry, you ran out of guesses.')
             print('My number is {}.'.format(secretNum))
 
-        
+        # Ask to play again:
+        print("Do you want to play again? (yes or no)")
+        if not input('> ').lower().startswith('y'):
+          break  # no response or "no" means they don't want to play again. Response starting with "y" means they do.
+      print("Thanks for playing! Hope to see you again!")
+
+    
+def getSecretNum():
+      numbers = list('0123456789')  # list of digits 0-9.
+      random.shuffle(numbers)  # Shuffle the numbers into a random order.
+
+      # Get the first NUM_DIGITS digit in the list for the secret number:
+      secretNum = ''
+      for i in range(NUM_DIGITS):
+        secretNum += str(numbers[i])
+      return secretNum
+
+def getClues(guess, secretNum):
+  """Returns a string with the Yes, No, Maybe."""
+  if guess == secretNum:
+    return 'You got it!'
+
+  clues = []
+
+  for i in range(len(guess)):
+    if guess[i] == secretNum[i]:
+      # A correct digit is in the correct place.
+      clues.append('Yes')
+    elif guess[i] in secretNum:
+      # A correct digit is in the incorrect place.
+      clues.append('Maybe')
+  if len(clues) == 0:
+    return 'No'  # There are no correct digits at all.
+  else:
+    # Sort the clues into alphabetical order so their original order
+    # doesn't give information away.
+    clues.sort()
+    
+    # Make a single string from the list of string clues.
+    return ' '.join(clues)
+
+
+# If the program is run (instead of imported), run the game:
+if __name__ == '__main__':
+  main()
+    
+    
